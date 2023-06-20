@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'dagger.hilt.android.plugin'
+    id 'kotlin-android'
     id 'kotlin-kapt'
 }
 
@@ -10,21 +11,36 @@ apply plugin: 'kotlin-parcelize'
 android {
     namespace 'com.business.the_movie_app'
     compileSdk 33
+    flavorDimensions "default"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.business.the_movie_app"
         minSdk 24
         targetSdk 33
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "MOVIE_API_KEY", "\"67a5350556a7fa94afc65e5f4a4e609f\"")
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        flavors.each { name, flavor ->
+            "$name" {
+
+            }
         }
     }
     compileOptions {
@@ -51,8 +67,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
+    implementation 'androidx.fragment:fragment-ktx:1.6.0'
+
 
     // Retrofit and OkHttp
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -62,6 +79,8 @@ dependencies {
     // RxJava and RxAndroid
     implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+
 
     // Architecture Components
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
@@ -70,6 +89,8 @@ dependencies {
     // Room Database
     implementation 'androidx.room:room-runtime:2.5.1'
     implementation 'androidx.room:room-ktx:2.5.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
     kapt 'androidx.room:room-compiler:2.5.1'
 
     // Gson
