@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.business.the_movie_app.BuildConfig
+import com.business.the_movie_app.R
 import com.business.the_movie_app.databinding.FragmentMovieListingBinding
 import com.business.the_movie_app.model.response.Movie
 import com.business.the_movie_app.presentation.adapter.MovieListAdapter
@@ -59,6 +61,9 @@ class MovieListingFragment : Fragment() {
     }
 
     private fun openMovieDetails(movie: Movie) {
-        // Handle opening the details page
+        val bundle = Bundle()
+        bundle.putParcelable("MovieDetail",movie)
+        findNavController().navigate(R.id.action_movieListingFragment_to_movieDetailPage,bundle)
+
     }
 }
