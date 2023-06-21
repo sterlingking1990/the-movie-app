@@ -3,6 +3,8 @@ package com.business.the_movie_app.presentation.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -11,12 +13,10 @@ import com.business.the_movie_app.R
 import com.business.the_movie_app.model.response.Movie
 
 // presentation/MovieListAdapter.kt
-class MovieListAdapter(private var movies: List<Movie>, private val onItemClick: (Movie) -> Unit) :
-    RecyclerView.Adapter<MovieListAdapter.MovieViewHolder>() {
+class MovieListAdapter(private var movies: List<Movie>,private val onItemClick: (Movie) -> Unit) :
+    RecyclerView.Adapter<MovieListAdapter.MovieViewHolder>(){
+    private var filteredMovies: List<Movie> = movies.toList()
 
-    fun setMovies(movie: List<Movie>){
-        this.movies = movie
-    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.single_item_movie_list, parent, false)
