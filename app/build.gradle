@@ -9,6 +9,9 @@ plugins {
 apply plugin: 'kotlin-parcelize'
 
 android {
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
     namespace 'com.business.the_movie_app'
     compileSdk 33
     flavorDimensions "default"
