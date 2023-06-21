@@ -43,6 +43,7 @@ class MovieListAdapter(private var movies: List<Movie>,private val onItemClick: 
 
             Glide.with(itemView)
                 .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
+                .override(500,320)
                 .into(posterImageView)
 
             itemView.setOnClickListener {

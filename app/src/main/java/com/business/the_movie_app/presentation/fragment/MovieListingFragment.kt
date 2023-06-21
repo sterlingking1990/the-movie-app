@@ -95,8 +95,10 @@ class MovieListingFragment : Fragment() {
 
     }
 
-    private suspend fun loadMovies(){
+    private fun loadMovies(){
+        //getMoviesViewModel.fetchCachedMovies(BuildConfig.MOVIE_API_KEY)
         getMoviesViewModel.fetchMovies(BuildConfig.MOVIE_API_KEY)
+
 
     }
 
