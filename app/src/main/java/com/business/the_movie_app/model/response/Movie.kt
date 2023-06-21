@@ -1,7 +1,10 @@
 package com.business.the_movie_app.model.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Movie(
     @SerializedName("id")
     val id: Int,
@@ -15,4 +18,4 @@ data class Movie(
     val posterPath: String,
     @SerializedName("vote_average")
     val voteAverage:Double
-)
+):Parcelable
