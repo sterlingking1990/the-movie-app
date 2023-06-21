@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
+
 @AndroidEntryPoint
 class MovieListingFragment : Fragment() {
     private lateinit var binding: FragmentMovieListingBinding
