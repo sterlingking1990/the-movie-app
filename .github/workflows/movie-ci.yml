@@ -1,0 +1,35 @@
+name: Movie CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+
+      - name: Grant execution permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Run Microtests
+        run: ./gradlew clean testDebug
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Run unit tests
+        run: ./gradlew test
+
