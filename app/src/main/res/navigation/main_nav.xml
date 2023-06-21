@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/movieListingFragment">
+
+    <fragment
+        android:id="@+id/movieListingFragment"
+        android:name="com.business.the_movie_app.presentation.fragment.MovieListingFragment"
+        android:label="MovieListingFragment" />
+</navigation>

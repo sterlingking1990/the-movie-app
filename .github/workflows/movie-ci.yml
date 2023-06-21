@@ -1,12 +1,9 @@
 name: Movie CI
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
-      - main
+      - develop
 
 jobs:
   build:
@@ -15,6 +12,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
+      - name: Set up Java JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: 'adopt'
 
       - name: Grant execution permission for gradlew
         run: chmod +x gradlew
