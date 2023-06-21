@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cvMerchantStories"
+        android:id="@+id/cvMovieListing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="10dp"
         android:elevation="100dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvHeaderMovieListing"
+        android:layout_marginEnd="10dp"
         app:cardCornerRadius="25dp"
         >
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etSearchStoryId"
+            android:id="@+id/etSearchMovie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:cursorVisible="true"
@@ -29,5 +32,29 @@
 
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/tvHeaderMovieListing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:text="Movie Listing"
+        app:layout_constraintTop_toBottomOf="@id/cvMovieListing"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMovieListing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvHeaderMovieListing"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="5dp"
+        tools:itemCount="5"
+        tools:listitem="@layout/single_item_movie_list"/>/
 
 </androidx.constraintlayout.widget.ConstraintLayout>
