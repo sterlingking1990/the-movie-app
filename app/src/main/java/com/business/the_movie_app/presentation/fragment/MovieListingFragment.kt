@@ -100,10 +100,6 @@ class MovieListingFragment : Fragment() {
 
     }
 
-    private fun showToast(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-    }
-
     private fun openMovieDetails(movie: Movie) {
         val bundle = Bundle()
         bundle.putParcelable("MovieDetail",movie)
