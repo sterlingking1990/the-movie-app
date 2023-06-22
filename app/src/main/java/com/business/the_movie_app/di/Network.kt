@@ -1,10 +1,13 @@
 package com.business.the_movie_app.di
 
+import android.content.Context
+import com.business.the_movie_app.local.db.AppDatabase
 import com.business.the_movie_app.remote.MovieApi
 import com.business.the_movie_app.utility.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -46,4 +49,12 @@ object Network {
     fun providesMovieService(retrofit: Retrofit): MovieApi{
         return retrofit.create(MovieApi::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun providesAppDatabase(@ApplicationContext applicationContext: Context) = AppDatabase.getInstance(applicationContext)
+
+    @Provides
+    @Singleton
+    fun provideMovieDao(db: AppDatabase)= db.getMovieDao()
 }
