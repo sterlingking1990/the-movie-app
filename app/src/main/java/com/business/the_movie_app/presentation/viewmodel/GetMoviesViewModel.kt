@@ -29,7 +29,6 @@ class GetMoviesViewModel @Inject constructor(
 
     @SuppressLint("CheckResult")
     fun fetchMovies(apiKey: String) {
-        Log.d("FetchingMovies", "fetchMovies")
 
         movieDao.getMovies()
             .subscribeOn(Schedulers.io())
@@ -42,7 +41,6 @@ class GetMoviesViewModel @Inject constructor(
                 }
             }, { error ->
                 // Handle error
-                Log.d("ErrorDBIs", error.toString())
             })
     }
 
@@ -56,7 +54,6 @@ class GetMoviesViewModel @Inject constructor(
                 saveMoviesToDatabase(movies)
             }, { error ->
                 // Handle error
-                Log.d("ErrorIs", error.toString())
             })
     }
 

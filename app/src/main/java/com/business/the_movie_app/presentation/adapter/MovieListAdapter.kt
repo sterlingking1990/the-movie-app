@@ -13,7 +13,7 @@ import com.business.the_movie_app.R
 import com.business.the_movie_app.model.response.Movie
 
 // presentation/MovieListAdapter.kt
-class MovieListAdapter(private var movies: List<Movie>,private val onItemClick: (Movie) -> Unit) :
+class MovieListAdapter(var movies: List<Movie>, private val onItemClick: (Movie) -> Unit) :
     RecyclerView.Adapter<MovieListAdapter.MovieViewHolder>(){
     private var filteredMovies: List<Movie> = movies.toList()
 
@@ -24,12 +24,12 @@ class MovieListAdapter(private var movies: List<Movie>,private val onItemClick: 
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie = movies[position]
+        val movie = filteredMovies[position]
         holder.bind(movie)
     }
 
     override fun getItemCount(): Int {
-        return movies.size
+        return filteredMovies.size
     }
 
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -50,5 +50,13 @@ class MovieListAdapter(private var movies: List<Movie>,private val onItemClick: 
                 onItemClick(movie)
             }
         }
+    }
+
+    fun filter(query: String) {
+        val filterPattern = query.toLowerCase().trim()
+        filteredMovies = movies.filter { movie ->
+            movie.title.toLowerCase().contains(filterPattern)
+        }
+        notifyDataSetChanged()
     }
 }

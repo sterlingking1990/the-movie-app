@@ -58,27 +58,12 @@ class MovieListingFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                val filterPattern = s.toString().toLowerCase().trim()
-
-                filteredMovies.clear()
-                filteredMovies.addAll(originalMovies.filter { movie ->
-                    movie.title.toLowerCase().contains(filterPattern)
-                })
-
-                adapter = MovieListAdapter(filteredMovies) { movie ->
-                    openMovieDetails(movie)
-                }
-                binding.rvMovieListing.adapter = adapter
-
-                adapter.notifyDataSetChanged()
+                val query = s.toString().toLowerCase().trim()
+                adapter.filter(query)
             }
 
             override fun afterTextChanged(s: Editable?) {
                 // Do nothing
-                if(s?.length!! <1){
-                    CoroutineScope(Dispatchers.Main).launch { loadMovies() }
-                }
             }
         })
 
