@@ -26,6 +26,6 @@
 
 - switch to develop
 - create a new branch of the feature you want to implement
-- create a pull request against develop to run CI/CD flow
+- create a pull request against develop to run work flow
 - if successful, merged to develop before merging to the main
 
